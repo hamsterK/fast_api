@@ -23,4 +23,4 @@ def calc_form():
     return "calculate.html"
 
 
-# uvicorn 3_calculate:app --reload
+# uvicorn practice.3_calculate:app --reload

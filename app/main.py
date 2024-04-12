@@ -22,3 +22,7 @@ user = User(name='John Doe', id=1)
 @app.get('/users')
 async def get_user_info(user_name: user):
     return user_name
+
+
+# uvicorn app.main:app --reload
+# npx kill-port 8000
