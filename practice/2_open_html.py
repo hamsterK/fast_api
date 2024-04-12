@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get('/')  # '/' is default address
 def root():
-    return FileResponse('../index.html')
+    return FileResponse('index.html')
 
 
 # uvicorn open_html:app --reload
