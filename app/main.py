@@ -3,6 +3,11 @@ from app.models.models import User, UserAge
 
 app = FastAPI()
 
+fake_users = {
+    1: {"username": "john_doe", "email": "john@example.com"},
+    2: {"username": "jane_smith", "email": "jane@example.com"},
+}
+
 
 @app.get('/')  # mark the function as one processing requests
 async def read_root():
@@ -20,8 +25,14 @@ def read_custom_message():
 # my_user = User(name='John Doe', id=1)
 
 @app.get("/users")
-async def get_user_info():
-    return User
+async def read_users(limit: int = 10):
+    return dict(list(fake_users.items())[:limit])
+
+@app.get("/users/{user_id}")
+def read_user(user_id: int):
+    if user_id in fake_users:
+        return fake_users[user_id]
+    return {"error": "User not found"}
 
 @app.post("/user")
 async def add_user(user: UserAge):
