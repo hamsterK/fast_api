@@ -9,3 +9,7 @@ class UserAge(BaseModel):
     age: int = 17
     # is_adult: bool = False
 
+class Feedback(BaseModel):
+    name: str = 'Anonymous user'
+    message: str = 'No message left'
+

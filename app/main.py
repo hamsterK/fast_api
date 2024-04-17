@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.models.models import User, UserAge
+from app.models.models import User, UserAge, Feedback
 
 app = FastAPI()
 
@@ -8,6 +8,7 @@ fake_users = {
     2: {"username": "jane_smith", "email": "jane@example.com"},
 }
 
+fake_feedbacks = list()
 
 @app.get('/')  # mark the function as one processing requests
 async def read_root():
@@ -43,6 +44,14 @@ async def add_user(user: UserAge):
 async def test_endpoint():
     return {"message": "Test endpoint reached successfully"}
 
+@app.post("/feedback")
+async def send_feedback(feedback: Feedback):
+    fake_feedbacks.append(feedback)
+    return {"message": f"Feedback received. Thank you, {feedback.name}!"}
+
+@app.get("/feedbacks")
+async def return_feedbacks():
+    return fake_feedbacks
 
 # uvicorn app.main:app --reload
 # npx kill-port 8000
