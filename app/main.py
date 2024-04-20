@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.models.models import User, UserAge, Feedback
+from app.models.models import User, UserAge, Feedback, NewUser, Product
+from typing import Union
 
 app = FastAPI()
 
@@ -9,6 +10,8 @@ fake_users = {
 }
 
 fake_feedbacks = list()
+
+
 
 @app.get('/')  # mark the function as one processing requests
 async def read_root():
@@ -36,7 +39,7 @@ def read_user(user_id: int):
     return {"error": "User not found"}
 
 @app.post("/user")
-async def add_user(user: UserAge):
+async def add_user_age(user: UserAge):
     is_adult = True if user.age >= 18 else False
     return {**user.model_dump(), "is_adult": is_adult}
 
@@ -52,6 +55,11 @@ async def send_feedback(feedback: Feedback):
 @app.get("/feedbacks")
 async def return_feedbacks():
     return fake_feedbacks
+
+@app.post("/create_user")
+async def create_user(user: NewUser):
+    fake_users[len(fake_users) + 1] = dict(user)
+    return user
 
 # uvicorn app.main:app --reload
 # npx kill-port 8000
