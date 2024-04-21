@@ -43,6 +43,11 @@ sample_products = [sample_product_1, sample_product_2, sample_product_3, sample_
 app = FastAPI()
 
 
+@app.get('/')  # mark the function as one processing requests
+async def read_root():
+    return {"message": "Hello World!"}
+
+
 @app.get("/product/{product_id}")
 async def get_product(product_id: int):
     for product in sample_products:
@@ -53,7 +58,16 @@ async def get_product(product_id: int):
 
 @app.get("/products/search")
 async def search_products(keyword: str, category: Union[str, None] = None, limit: int = 10):
-    pass
+    result_cat = list(filter(lambda x: category.lower() in x["category"].lower(), sample_products))
+    result = list(filter(lambda x: keyword.lower() in x["name"].lower(), result_cat))
+    return result[:limit]
 
+
+# @app.get('/products/search')
+# def search(keyword:str, category: str = None, limit: int = 10):
+#     result = list(filter(lambda item: keyword.lower() in item['name'].lower(), sample_products))
+#     if category:
+#         result = list(filter(lambda item: item["category"] == category, result))
+#     return result[:limit]
 
 # uvicorn app.products:app --reload
