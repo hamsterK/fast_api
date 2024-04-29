@@ -7,7 +7,7 @@ app = FastAPI()
 # async def read_items(user_agent: Annotated[str | None, Header()] = None): python 3.10+
 #     return {"User-Agent": user_agent}
 
-# to disable automatic conversion of headers to snake case for python => set parameter convert_underscores=False
+# to disable automatic conversion of headers to snake case for python => set parameter convert_underscores=False => Python 3.10+
 
 # get User-Agent header:
 @app.get("/headers-1")
