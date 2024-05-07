@@ -32,7 +32,7 @@ def update(todo_id: int, data: TodoCreate):
 @check_decorator
 def delete(todo_id: int):
     if delete_todo(todo_id):
-        return HTTPException(status_code=status.HTTP_200_OK, detail="Todo is deleted")
+        raise HTTPException(status_code=status.HTTP_200_OK, detail="Todo is deleted")
 
 # uvicorn postgresql_sqlalchemy.main:app --reload
 # if __name__ == "__main__":
