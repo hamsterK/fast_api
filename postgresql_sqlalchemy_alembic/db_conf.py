@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine, MetaData, insert, select, update, delete
 from sqlalchemy import Table, Column, VARCHAR, Integer, Boolean
 from sqlalchemy.orm import Session
-from postgresql_sqlalchemy.models import TodoCreate, Todo
+from postgresql_sqlalchemy_alembic.models import TodoCreate, Todo
 from typing import Annotated
 
-engine = create_engine('postgresql+psycopg2://test_user_sql:admin_password@localhost/stepik_test')
+engine = create_engine('postgresql://test_user_sql:admin_password@localhost/stepik_test')
 metadata = MetaData()
 
 todo = Table('todo', metadata,

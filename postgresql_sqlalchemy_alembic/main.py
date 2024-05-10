@@ -1,6 +1,6 @@
 from fastapi import FastAPI, status, HTTPException
-from postgresql_sqlalchemy.models import TodoCreate
-from postgresql_sqlalchemy.db_conf import add_todo, get_todo, update_todo, delete_todo
+from postgresql_sqlalchemy_alembic.models import TodoCreate
+from postgresql_sqlalchemy_alembic.db_conf import add_todo, get_todo, update_todo, delete_todo
 from functools import wraps
 
 app = FastAPI()
@@ -34,7 +34,7 @@ def delete(todo_id: int):
     if delete_todo(todo_id):
         raise HTTPException(status_code=status.HTTP_200_OK, detail="Todo is deleted")
 
-# uvicorn postgresql_sqlalchemy.main:app --reload
+# uvicorn postgresql_sqlalchemy_alembic.main:app --reload
 # if __name__ == "__main__":
 # uvicorn.run(app, host='127.0.0.1', port=8000)
 
