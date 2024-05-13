@@ -49,3 +49,5 @@ async def read_item(item_id: int):
     if item_id == 42:
         raise CustomException(detail="Item not found", status_code=404, message="You're trying to get an item that doesn't exist. Try entering a different item_id.")
     return {"item_id": item_id}
+
+# uvicorn practice.task_20_exceptions:app --reload
