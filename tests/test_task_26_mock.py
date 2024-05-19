@@ -7,6 +7,7 @@ client = TestClient(app)
 
 class TestApp(unittest.TestCase):
 
+    # decorators - from bottom to top
     @patch("app.fetch_data_from_api")  # patch - used to replace functions with fake objects
     @patch("app.process_data")
     def test_get_and_process_data(self, mock_process_data, mock_fetch_data):
