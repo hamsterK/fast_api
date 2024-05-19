@@ -6,6 +6,10 @@ class User(BaseModel):
     name: str = 'John Doe'
     id: int = 1
 
+class UserTest(BaseModel):
+    username: str
+    password: str
+
 class UserAge(BaseModel):
     name: str = 'John Doe'
     age: int = 17
