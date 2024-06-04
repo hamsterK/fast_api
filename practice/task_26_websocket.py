@@ -20,3 +20,5 @@ async def websocket_endpoint(websocket: WebSocket):
 async def broadcast_message(message: str):
     for client in connected_clients:
         await client.send_text(f"Broadcast message: {message}")
+
+# uvicorn practice.task_26_websocket:app --reload
